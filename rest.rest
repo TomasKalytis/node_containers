@@ -1,0 +1,14 @@
+GET http://localhost:3000/
+
+###
+GET https://jsonplaceholder.typicode.com/users
+
+### Create Post
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: application/json
+
+{
+    "containerId": 50,
+    "container title": "new container",
+    "in container": "boxes in container"
+}
