@@ -3,8 +3,17 @@ GET http://localhost:3000/
 ### get all containers
 GET http://localhost:3000/api/containers
 
+### get all containers names
+GET http://localhost:3000/api/containers/name
+
+### get all containers types
+GET http://localhost:3000/api/containers/type
+
 ### get single container
-GET http://localhost:3000/api/containers/2
+GET http://localhost:3000/api/containers/20
+
+### delete single container
+DELETE http://localhost:3000/api/containers/20
 
 ###
 GET https://jsonplaceholder.typicode.com/users

@@ -30,6 +30,20 @@ app.get('/api/containers', (req, resp) => {
   resp.json(containers);
 });
 
+//GET - /api/containers/name - grazins visus konteinerius pagal "name" masyvo pavidalu
+app.get('/api/containers/name', (req, resp) => {
+  const namesArr = containers.map((containerObj) => containerObj.name);
+  console.log('namesArr ===', namesArr);
+  resp.json(namesArr);
+});
+
+//GET - /api/containers/type - grazins visus konteinerius pagal "type" masyvo pavidalu
+app.get('/api/containers/type', (req, resp) => {
+  const typesArr = containers.map((containerObj) => containerObj.type);
+  console.log('typesArr ===', typesArr);
+  resp.json(typesArr);
+});
+
 //GET - /api/containers/1 - grazinti konkretu konteineri
 // :containerId - dinamine dalis
 app.get('/api/containers/:containerId', (req, resp) => {
@@ -40,7 +54,20 @@ app.get('/api/containers/:containerId', (req, resp) => {
     (containerObj) => containerId === containerObj.id
   );
   console.log('found ===', found);
+
+  //jei neradom
+  if (found === undefined) {
+    resp
+      .status(404)
+      .json({ msg: `container with id ${containerId} was not found` });
+    return;
+  }
   resp.json(found);
+});
+
+// DELETE - /api/containers/1 - istrinti konteineri su id
+app.delete('/api/containers/:containerId', (req, resp) => {
+  resp.json('delete container with id');
 });
 
 app.listen(port, () => {
