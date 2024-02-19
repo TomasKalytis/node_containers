@@ -1,5 +1,11 @@
 GET http://localhost:3000/
 
+### get all containers
+GET http://localhost:3000/api/containers
+
+### get single container
+GET http://localhost:3000/api/containers/2
+
 ###
 GET https://jsonplaceholder.typicode.com/users
 
