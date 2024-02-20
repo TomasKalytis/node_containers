@@ -7,7 +7,10 @@ const port = 3000;
 
 let containers = [
   {
-    id: 1, name: 'refrigerator', type: 'S', isLoaded: false,
+    id: 1,
+    name: 'refrigerator',
+    type: 'S',
+    isLoaded: false,
   },
   {
     id: 2,
@@ -82,7 +85,7 @@ app.get('/api/containers/:containerId', (req, resp) => {
   const containerId = +req.params.containerId;
   // surasti objekta su id === userId ir ji grazinti
   const found = containers.find(
-    (containerObj) => containerId === containerObj.id,
+    (containerObj) => containerId === containerObj.id
   );
   console.log('found ===', found);
 
@@ -101,7 +104,7 @@ app.delete('/api/containers/:containerId', (req, resp) => {
   const containerId = +req.params.containerId;
   // grazinti viska isskyrus ta elementa, kurio id yra = container Id
   containers = containers.filter(
-    (containerObj) => containerObj.id !== containerId,
+    (containerObj) => containerObj.id !== containerId
   );
   console.log('containers ===', containers);
   resp.json(containers);
