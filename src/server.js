@@ -6,13 +6,13 @@ const { userInfo } = require('os');
 const app = express();
 const port = 3000;
 
-const containers = [
-  { id: 1, name: 'refrigerator', type: 'S' },
-  { id: 2, name: 'standard', type: 'S' },
-  { id: 3, name: 'refrigerator', type: 'M' },
-  { id: 4, name: 'standard', type: 'M' },
-  { id: 5, name: 'refrigerator', type: 'L' },
-  { id: 6, name: 'standard', type: 'L' },
+let containers = [
+  { id: 1, name: 'refrigerator', type: 'S', isLoaded: false },
+  { id: 2, name: 'standard', type: 'S', isLoaded: true },
+  { id: 3, name: 'refrigerator', type: 'M', isLoaded: false },
+  { id: 4, name: 'standard', type: 'M', isLoaded: true },
+  { id: 5, name: 'refrigerator', type: 'L', isLoaded: false },
+  { id: 6, name: 'standard', type: 'L', isLoaded: true },
 ];
 
 //Middleware
@@ -29,6 +29,11 @@ app.get('/', (req, resp) => {
 app.get('/api/containers', (req, resp) => {
   resp.json(containers);
 });
+
+//GET - /api/containers/loaded - grazins visus pakrautus konteinerius
+//app.get
+//filtruojam containers, kad atrinkti pakrautus
+//grazinam pakrautus konteinerius
 
 //GET - /api/containers/name - grazins visus konteinerius pagal "name" masyvo pavidalu
 app.get('/api/containers/name', (req, resp) => {
@@ -67,9 +72,15 @@ app.get('/api/containers/:containerId', (req, resp) => {
 
 // DELETE - /api/containers/1 - istrinti konteineri su id
 app.delete('/api/containers/:containerId', (req, resp) => {
-  resp.json('delete container with id');
+  const containerId = +req.params.containerId;
+  // grazinti viska isskyrus ta elementa, kurio id yra = container Id
+  containers = containers.filter(
+    (containerObj) => containerObj.id !== containerId
+  );
+  console.log('containers ===', containers);
+  resp.json(containers);
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`server is running http://localhost:${port}`);
 });

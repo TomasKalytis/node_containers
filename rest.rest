@@ -13,7 +13,7 @@ GET http://localhost:3000/api/containers/type
 GET http://localhost:3000/api/containers/20
 
 ### delete single container
-DELETE http://localhost:3000/api/containers/20
+DELETE http://localhost:3000/api/containers/1
 
 ###
 GET https://jsonplaceholder.typicode.com/users
